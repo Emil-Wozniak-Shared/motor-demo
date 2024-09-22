@@ -68,7 +68,9 @@ fun Application.configureRouting() {
         }
         static {
             resource("/", RESOURCE_INDEX)
-            static(STATIC_ROUTE) { resources(RESOURCE_STATIC) }
+            static(STATIC_ROUTE) {
+                resources(RESOURCE_STATIC)
+            }
         }
     }
 }
