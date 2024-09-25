@@ -1,12 +1,10 @@
 import {create} from 'zustand'
-import {DriverModel} from "../model/Driver.model";
-import {GenderModel} from "../model/Gender.model";
 import {ProblemDetails} from "../model/ProblemDetails";
+import {DictionaryEntryModel} from "../model/Dictionary.entry.model";
 import request from "../lib/http";
-import {VehicleModel} from "../model/Vehicle.model";
 
 type State = {
-    vehicle: VehicleModel | null
+    dictionaries: DictionaryEntryModel | null
     error: ProblemDetails | null
 }
 
@@ -17,53 +15,50 @@ type Actions = {
     getTypeDictionary:  (makeId: string) => Promise<void>
 }
 
-const BASE_URL = "vehicle";
+const BASE_URL = "dictionaries";
 
-export const useVehicleStore = create<State & Actions>((setState, _, store) => ({
-    vehicle: null,
+export const useDictionaryStore = create<State & Actions>((setState, _, store) => ({
+    dictionaries: null,
     error: null,
-    getMakeDictionary: () => request<VehicleModel>({url: `${BASE_URL}`, method: "GET"})
-        .then((vehicle) => setState({vehicle, ...store}))
+    getMakeDictionary: (productionYear: number) => request<DictionaryEntryModel>(
+        {
+            url: `${BASE_URL}/make`,
+            method: "GET",
+            params: {productionYear}
+        })
+        .then((dictionaries) => setState({dictionaries, ...store}))
         .catch(error => {
             setState({error, ...store})
             console.error(error)
         }),
-    updateVehicleMake: (makeId: string, make: string) => request<VehicleModel>({
-        url: `${BASE_URL}`,
-        method: "PUT",
-        params: {makeId, make}
-    })
-        .then((vehicle) => setState({vehicle, ...store}))
+    getModelDictionary: (typeId: string) => request<DictionaryEntryModel>(
+        {
+            url: `${BASE_URL}/model`,
+            method: "GET",
+            params: {typeId}
+        })
+        .then((dictionaries) => setState({dictionaries, ...store}))
         .catch(error => {
             setState({error, ...store})
             console.error(error)
         }),
-    updateVehicleModel: (modelId: string) => request<VehicleModel>({
-        url: `${BASE_URL}`,
-        method: "PUT",
-        params: {modelId}
-    })
-        .then((vehicle) => setState({vehicle, ...store}))
+    getProductionYearDictionary: () => request<DictionaryEntryModel>(
+        {
+            url: `${BASE_URL}/productionYear`,
+            method: "GET",
+        })
+        .then((dictionaries) => setState({dictionaries, ...store}))
         .catch(error => {
             setState({error, ...store})
             console.error(error)
         }),
-    updateVehicleProductionYear: (productionYear: number) => request<VehicleModel>({
-        url: `${BASE_URL}`,
-        method: "PUT",
-        params: {productionYear}
-    })
-        .then((vehicle) => setState({vehicle, ...store}))
-        .catch(error => {
-            setState({error, ...store})
-            console.error(error)
-        }),
-    updateVehicleType: (typeId: string) => request<VehicleModel>({
-        url: `${BASE_URL}`,
-        method: "PUT",
-        params: {typeId}
-    })
-        .then((vehicle) => setState({vehicle, ...store}))
+    getTypeDictionary: (makeId: string) => request<DictionaryEntryModel>(
+        {
+            url: `${BASE_URL}/productionYear`,
+            method: "GET",
+            params: {makeId}
+        })
+        .then((dictionaries) => setState({dictionaries, ...store}))
         .catch(error => {
             setState({error, ...store})
             console.error(error)

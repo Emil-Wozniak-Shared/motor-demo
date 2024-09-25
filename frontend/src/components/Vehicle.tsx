@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useVehicleStore} from "../stores/vehicle.store";
+import {useDictionaryStore} from "../stores/dictionary.store";
 
 const Vehicle = () => {
     const ctrl = useVehicleStore(state => state);
@@ -7,17 +8,15 @@ const Vehicle = () => {
     useEffect(() => {
         ctrl.getVehicle().finally();
         dictCtrl.getProductionYearDictionary()
-            .then(function (response) {
-                ctrl.productionYearDictionary = response.data;
-            });
-        if (ctrl.vehicle.productionYear) {
-            getMakeDictionary();
+            // .then(response => dictCtrl.productionYearDictionary = response.data);
+        if (ctrl.vehicle?.productionYear) {
+            dictCtrl.getMakeDictionary(ctrl.vehicle.productionYear);
         }
-        if (ctrl.vehicle.makeId) {
-            getTypeDictionary();
+        if (ctrl.vehicle?.makeId) {
+            dictCtrl.getTypeDictionary(ctrl.vehicle.makeId);
         }
-        if (ctrl.vehicle.typeId) {
-            getModelDictionary();
+        if (ctrl.vehicle?.typeId) {
+            dictCtrl.getModelDictionary(ctrl.vehicle.typeId);
         }
 
     }, [])

@@ -67,6 +67,6 @@ tasks {
         from(fileTree("frontend/build"))
         into("src/main/resources/static")
     }
+    processResources { setDependsOn(listOf("deployStatic")) }
+    clean { setDependsOn(listOf("cleanStatic")) }
 }
-tasks.processResources { setDependsOn(listOf("deployStatic")) }
-tasks.clean { setDependsOn(listOf("cleanStatic")) }
