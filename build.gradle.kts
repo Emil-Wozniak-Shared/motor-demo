@@ -46,6 +46,14 @@ dependencies {
     implementation("io.ktor:ktor-server-cio-jvm")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("io.ktor:ktor-server-config-yaml")
+
+    implementation(project.dependencies.platform("io.insert-koin:koin-bom:4.0.0"))
+    implementation("io.insert-koin:koin-core")
+    implementation("io.insert-koin:koin-ktor")
+
+    implementation("com.zaxxer:HikariCP:5.1.0")
+    implementation("io.higson:higson-runtime:4.0.11")
+    runtimeOnly("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2")
     testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")

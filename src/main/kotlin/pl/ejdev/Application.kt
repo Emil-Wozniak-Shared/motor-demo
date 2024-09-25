@@ -1,6 +1,8 @@
 package pl.ejdev
 
 import io.ktor.server.application.*
+import org.koin.dsl.module
+import org.koin.ktor.plugin.Koin
 import pl.ejdev.plugins.*
 
 fun main(args: Array<String>) {
@@ -10,6 +12,8 @@ fun main(args: Array<String>) {
 fun Application.module() {
     configureHTTP()
     configureMonitoring()
-    configureDatabases()
+//    configureDatabases()
+    configureDependencyInjection()
+    configureWeb()
     configureRouting()
 }

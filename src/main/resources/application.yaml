@@ -3,4 +3,23 @@ ktor:
     modules:
       - pl.ejdev.ApplicationKt.module
   deployment:
-    port: 8080
+    port: 8080 # 48080
+# point this to Higson Studio Database (version 4.0.2 or later)
+# download and extract Higson Bundle from: https://higson.io/download
+higson:
+  database:
+#    url: 'jdbc:h2:~/higson/higson.demo;AUTO_SERVER=TRUE;IFEXISTS=TRUE'
+#    username: 'sa'
+#    password: 'sa'
+#    dialect: 'h2'
+    url: 'jdbc:postgresql://localhost:12432/higson'
+    username: 'higson'
+    password: 'higson'
+    dialect: 'postgresql'
+  # enable to see unpublished changes made in Higson Studio by a given user
+  dev:
+    mode: true
+    user: admin
+
+# enable when behind proxy
+#server.use-forward-headers=true

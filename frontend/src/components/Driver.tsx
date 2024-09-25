@@ -1,14 +1,11 @@
 import React, {useEffect} from 'react';
-import {useDriverStore} from "../stores";
-import {Gender} from "../model/Gender";
+import {useDriverStore} from "../stores/driver.store";
+import {GenderModel} from "../model/Gender.model";
 import {FaFemale, FaMale} from "react-icons/fa";
 
 const Driver = () => {
     const ctrl = useDriverStore((state) => state)
-
-    useEffect(() => {
-        ctrl.getDriver().finally();
-    }, [])
+    useEffect(() => { ctrl.getDriver().finally();}, [])
 
     return (
         <div className="w-full max-w-xs">
@@ -34,7 +31,6 @@ const Driver = () => {
                         onChange={(event) => ctrl.updateDriverLastName(event.target.value)}
                     />
                 </div>
-
                 <div className="md:w-2/3">
                     <div className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">Date of birth</div>
                     <input
@@ -52,11 +48,11 @@ const Driver = () => {
                         <FaMale
                             className="my-2 w-8 h-8 text-blue-600 focus:ring-2 cursor-pointer"
                             width={32} height={32}
-                            onClick={(_) => ctrl.updateDriverGender(Gender.MALE)}/>
+                            onClick={(_) => ctrl.updateDriverGender(GenderModel.MALE)}/>
                         <FaFemale
                             className="my-2 w-8 h-8 text-blue-600 focus:ring-2 cursor-pointer"
                             width={32} height={32}
-                            onClick={(_) => ctrl.updateDriverGender(Gender.FEMALE)}/>
+                            onClick={(_) => ctrl.updateDriverGender(GenderModel.FEMALE)}/>
                     </div>
                 </div>
 

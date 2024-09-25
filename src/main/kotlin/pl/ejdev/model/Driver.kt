@@ -3,41 +3,22 @@ package pl.ejdev.model
 import com.fasterxml.jackson.annotation.JsonFormat
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
-import java.time.LocalDate
-
-
-@Serializable
-enum class Gender {
-    MALE, FEMALE;
-}
+import pl.ejdev.model.dto.BigDecimalSerializer
+import java.util.*
 
 @Serializable
 data class Driver(
-    var zipCode: String,
-    var city: String,
-    var street: String,
-    @Contextual
+    var firstName: String? = null,
+    var lastName: String? = null,
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    var birthDate: LocalDate,
-    var firstName: String,
-    var lastName: String,
-    var gender: Gender,
-    var accidentCount: Int,
-    var trafficTicketsCount: Int,
-    var licenceObtainedAtAge: Int
-) {
-    companion object  {
-        val Default = Driver(
-            zipCode = "00780",
-            city = "Warsaw",
-            street = "Złota",
-            birthDate = LocalDate.of(2019, 12, 25),
-            firstName = "John",
-            lastName = "Snow",
-            gender = Gender.MALE,
-            accidentCount = 0,
-            trafficTicketsCount = 0,
-            licenceObtainedAtAge = 0
-        )
-    }
-}
+    @Contextual
+    var dateOfBirth: Date? = null,
+    var gender: Gender? = null,
+    var address: Address? = null,
+    // number of accidents in the last 5 years
+    var numberOfAccidents: Int = 0,
+    // number of traffic tickets in the last 5 years
+    var numberOfTickets: Int = 0,
+    // driver's age when driver licence was obtained
+    var licenceObtainedAtAge: Int = 0
+)

@@ -19,16 +19,4 @@ fun Application.configureHTTP() {
     routing {
         swaggerUI(path = "openapi")
     }
-//    routing {
-//        cacheOutput(2.seconds) {
-//            get("/short") {
-//                call.respond(Random.nextInt().toString())
-//            }
-//        }
-//        cacheOutput {
-//            get("/default") {
-//                call.respond(Random.nextInt().toString())
-//            }
-//        }
-//    }
 }
