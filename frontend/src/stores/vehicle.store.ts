@@ -1,9 +1,7 @@
 import {create} from 'zustand'
-import {DriverModel} from "../model/Driver.model";
-import {GenderModel} from "../model/Gender.model";
 import {ProblemDetails} from "../model/ProblemDetails";
-import request from "../lib/http";
 import {VehicleModel} from "../model/Vehicle.model";
+import request from "../lib/http";
 
 type State = {
     vehicle: VehicleModel | null
@@ -18,7 +16,7 @@ type Actions = {
     updateVehicleType: (typeId: string) => Promise<void>,
 }
 
-const BASE_URL = "vehicle";
+const BASE_URL: string = "vehicle";
 
 export const useVehicleStore = create<State & Actions>((setState, _, store) => ({
     vehicle: null,

@@ -1,7 +1,7 @@
 export type VehicleModel = {
+    make?: string  | null;
+    makeId: number;
+    modelId: number
+    typeId: number
     productionYear: number
-    makeId: string;
-    make: string;
-    modelId: string | null
-    typeId: string | null
 }

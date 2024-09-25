@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {useDriverStore} from "../stores/driver.store";
-import {GenderModel} from "../model/Gender.model";
+import {useDriverStore} from "../../stores/driver.store";
+import {GenderModel} from "../../model/Gender.model";
 import {FaFemale, FaMale} from "react-icons/fa";
 
 const Driver = () => {

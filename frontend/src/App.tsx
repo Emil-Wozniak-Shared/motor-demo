@@ -1,5 +1,4 @@
 import React from "react";
-import Driver from "./components/Driver";
 import Sidebar from "./components/ui/Sidebar";
 
 const App = () => (

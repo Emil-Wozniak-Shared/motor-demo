@@ -1,6 +1,6 @@
 import React, {FC} from "react";
-import Driver from "../Driver";
-import Vehicle from "../Vehicle";
+import Driver from "../driver";
+import Vehicle from "../vehicle";
 
 type SidebarElementProps = {
     name: string;
